@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+		<groupId>org.joolzminer</groupId>
+		<artifactId>doopz-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>doopz-console-ui</artifactId>
+
+    <packaging>jar</packaging>
+
+    <name>doopz-console-ui</name>
+	<description>Doopz Console UI contains the classes that provide a console based UI for Doopz</description>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.joolzminer</groupId>
+			<artifactId>doopz-services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	
+</project>
+
