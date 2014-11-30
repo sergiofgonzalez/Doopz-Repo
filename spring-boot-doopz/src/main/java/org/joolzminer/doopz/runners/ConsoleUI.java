@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.joolzminer.doopz.domain.FileInfo;
 import org.joolzminer.doopz.services.DuplicatesSeekerService;
 import org.slf4j.Logger;
@@ -30,7 +31,10 @@ public class ConsoleUI implements CommandLineRunner {
 		Map<String, Set<FileInfo>> dupsByName = duplicatesSeekerService.getDuplicatesByName(fromDirectory);
 		Map<Long, Set<FileInfo>> dupsByLen = duplicatesSeekerService.getDuplicatesByLength(fromDirectory);
 		
+		System.out.println("Listing possible duplicate files by name: ");
 		prettyPrintDupsByName(dupsByName);
+		
+		System.out.println("Listing possible duplicate files by length: ");
 		prettyPrintDupsByLen(dupsByLen);
 	}
 
@@ -41,7 +45,7 @@ public class ConsoleUI implements CommandLineRunner {
 			for (Entry<String, Set<FileInfo>> dupEntry : dups.entrySet()) {
 				System.out.println(dupEntry.getKey());
 				for (FileInfo fileInfo : dupEntry.getValue()) {
-					System.out.println("\t" + fileInfo.getFilePath() + " (" + fileInfo.getFileLength() + " bytes)");
+					System.out.println("\t" + fileInfo.getFilePath() + " (" + FileUtils.byteCountToDisplaySize(fileInfo.getFileLength()) + ")");
 				}
 				System.out.println();				
 			}
@@ -55,7 +59,7 @@ public class ConsoleUI implements CommandLineRunner {
 			for (Entry<Long, Set<FileInfo>> dupEntry : dups.entrySet()) {
 				System.out.println(dupEntry.getKey() + " bytes");
 				for (FileInfo fileInfo : dupEntry.getValue()) {
-					System.out.println("\t" + fileInfo.getFileName() + " (" + fileInfo.getFilePath() + ")");
+					System.out.println("\t" + fileInfo.getFilePath() + " (" + FileUtils.byteCountToDisplaySize(fileInfo.getFileLength()) + ")");
 				}				
 				System.out.println();
 			}
